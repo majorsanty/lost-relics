@@ -1,0 +1,3 @@
+accessWidener v2 named
+extendable method net/minecraft/client/render/entity/feature/ArmorFeatureRenderer getModel (Lnet/minecraft/entity/EquipmentSlot;)Lnet/minecraft/client/render/entity/model/BipedEntityModel;
+accessible method net/minecraft/client/render/entity/feature/ArmorFeatureRenderer usesInnerModel (Lnet/minecraft/entity/EquipmentSlot;)Z

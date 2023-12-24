@@ -1,0 +1,6 @@
+{
+  "parent": "lostrelics:item/small_handheld",
+  "textures": {
+	"layer0": "lostrelics:item/broken_triple_toothed_snake"
+  }
+}

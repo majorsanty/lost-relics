@@ -1,0 +1,31 @@
+{
+  "entity.generic.transform": {
+	"sounds": [
+	  "random/fizz"
+	],
+	"subtitle": "subtitles.lostrelics.entity.generic.transform"
+  },
+  "entity.generic.spawn": {
+	"sounds": [
+	  {
+		"name": "mob/wither/shoot",
+		"volume": 0.2
+	  }
+	],
+	"subtitle": "subtitles.lostrelics.entity.generic.spawn"
+  },
+  "entity.tainted_blood_crystal.shatter": {
+	"sounds": [
+	  "random/glass1",
+	  "random/glass2",
+	  "random/glass3"
+	],
+	"subtitle": "subtitles.lostrelics.entity.tainted_blood_crystal.shatter"
+  },
+  "item.relic.toggle": {
+	"sounds": [
+	  "random/orb"
+	],
+	"subtitle": "subtitles.lostrelics.item.relic.toggle"
+  }
+}

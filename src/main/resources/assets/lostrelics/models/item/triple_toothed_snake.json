@@ -1,0 +1,38 @@
+{
+  "parent": "lostrelics:item/small_handheld",
+  "textures": {
+	"layer0": "lostrelics:item/triple_toothed_snake"
+  },
+  "overrides": [
+	{
+	  "predicate": {
+		"one": 1
+	  },
+	  "model": "lostrelics:item/triple_toothed_snake_1"
+	},
+	{
+	  "predicate": {
+		"two": 1
+	  },
+	  "model": "lostrelics:item/triple_toothed_snake_2"
+	},
+	{
+	  "predicate": {
+		"three": 1
+	  },
+	  "model": "lostrelics:item/triple_toothed_snake_3"
+	},
+	{
+	  "predicate": {
+		"four": 1
+	  },
+	  "model": "lostrelics:item/triple_toothed_snake_4"
+	},
+	{
+	  "predicate": {
+		"broken": 1
+	  },
+	  "model": "lostrelics:item/broken_triple_toothed_snake"
+	}
+  ]
+}

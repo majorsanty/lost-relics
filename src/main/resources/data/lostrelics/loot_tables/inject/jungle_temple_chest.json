@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+	{
+	  "bonus_rolls": 0.0,
+	  "entries": [
+		{
+		  "type": "minecraft:tag",
+		  "name": "lostrelics:jungle_relics",
+		  "expand": true
+		}
+	  ],
+	  "rolls": 1.0
+	}
+  ]
+}

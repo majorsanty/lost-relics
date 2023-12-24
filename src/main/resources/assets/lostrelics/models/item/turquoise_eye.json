@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+	"layer0": "lostrelics:item/turquoise_eye"
+  },
+  "overrides": [
+	{
+	  "predicate": {
+		"broken": 1
+	  },
+	  "model": "lostrelics:item/broken_turquoise_eye"
+	}
+  ]
+}

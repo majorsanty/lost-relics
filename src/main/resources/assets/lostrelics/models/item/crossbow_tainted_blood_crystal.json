@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/crossbow",
+  "textures": {
+	"layer0": "lostrelics:item/crossbow_tainted_blood_crystal"
+  }
+}

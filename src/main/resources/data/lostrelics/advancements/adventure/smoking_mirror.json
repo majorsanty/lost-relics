@@ -1,0 +1,38 @@
+{
+  "parent": "lostrelics:adventure/find_jungle_pyramid",
+  "criteria": {
+	"smoking_mirror": {
+	  "conditions": {
+		"items": [
+		  {
+			"items": [
+			  "lostrelics:smoking_mirror"
+			]
+		  }
+		]
+	  },
+	  "trigger": "minecraft:inventory_changed"
+	}
+  },
+  "display": {
+	"announce_to_chat": true,
+	"description": {
+	  "translate": "advancements.lostrelics.adventure.smoking_mirror.description"
+	},
+	"frame": "task",
+	"hidden": false,
+	"icon": {
+	  "item": "lostrelics:smoking_mirror"
+	},
+	"show_toast": true,
+	"title": {
+	  "translate": "advancements.lostrelics.adventure.smoking_mirror.title"
+	}
+  },
+  "requirements": [
+	[
+	  "smoking_mirror"
+	]
+  ],
+  "sends_telemetry_event": true
+}

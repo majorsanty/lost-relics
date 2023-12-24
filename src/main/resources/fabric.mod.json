@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "lostrelics",
+  "version": "${version}",
+  "name": "Lost Relics",
+  "description": "Find unique and powerful artifacts found in the ancient structures of the world!",
+  "authors": [
+	"MoriyaShiine",
+	"cybercat5555"
+  ],
+  "contact": {
+	"homepage": "https://www.curseforge.com/minecraft/mc-mods/lost-relics",
+	"sources": "https://github.com/MoriyaShiine/lost-relics",
+	"issues": "https://github.com/MoriyaShiine/lost-relics/issues"
+  },
+  "license": "All Rights Reserved",
+  "icon": "assets/lostrelics/icon.png",
+  "environment": "*",
+  "entrypoints": {
+	"fabric-datagen": [
+	  "moriyashiine.lostrelics.data.ModDataGenerator"
+	],
+	"main": [
+	  "moriyashiine.lostrelics.common.LostRelics"
+	],
+	"client": [
+	  "moriyashiine.lostrelics.client.LostRelicsClient"
+	],
+	"cardinal-components-entity": [
+	  "moriyashiine.lostrelics.common.init.ModEntityComponents"
+	]
+  },
+  "mixins": [
+	"lostrelics.mixins.json"
+  ],
+  "accessWidener": "lostrelics.accesswidener",
+  "depends": {
+	"fabricloader": "*",
+	"minecraft": "~1.20.1",
+	"java": ">=17",
+	"fabric-api": "*",
+	"trinkets": "*"
+  },
+  "custom": {
+	"cardinal-components": [
+	  "lostrelics:cursed_amulet",
+	  "lostrelics:smoking_mirror"
+	]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/bow",
+  "textures": {
+	"layer0": "lostrelics:item/bow_pulling_tainted_blood_crystal_1"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:instant_damage",
+    "minecraft:wither"
+  ]
+}
