@@ -14,10 +14,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Pair;
 
 public class LostRelicsUtil {
-	public static boolean hasTrinket(LivingEntity entity, Item item) {
+	public static boolean hasSpecificTrinket(LivingEntity entity, ItemStack stack) {
 		boolean[] equipped = {false};
 		TrinketsApi.getTrinketComponent(entity).ifPresent(trinketComponent -> {
-			if (trinketComponent.isEquipped(stack -> stack.isOf(item) && RelicItem.isUsable(stack))) {
+			if (trinketComponent.isEquipped(foundStack -> foundStack == stack && RelicItem.isUsable(foundStack))) {
+				equipped[0] = true;
+			}
+		});
+		return equipped[0];
+	}
+
+	public static boolean hasAnyTrinket(LivingEntity entity, Item item) {
+		boolean[] equipped = {false};
+		TrinketsApi.getTrinketComponent(entity).ifPresent(trinketComponent -> {
+			if (trinketComponent.isEquipped(foundStack -> foundStack.isOf(item) && RelicItem.isUsable(foundStack))) {
 				equipped[0] = true;
 			}
 		});

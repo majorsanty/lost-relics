@@ -30,6 +30,6 @@ public class TurquoiseEyeEvent implements ServerLivingEntityEvents.AllowDamage {
 	}
 
 	public static boolean applyTurquoiseEye(LivingEntity entity, LivingEntity attacker) {
-		return entity.getHealth() == entity.getMaxHealth() && !LostRelicsUtil.isCoolingDown(attacker, ModItems.TURQUOISE_EYE) && LostRelicsUtil.hasTrinket(attacker, ModItems.TURQUOISE_EYE);
+		return entity.getHealth() == entity.getMaxHealth() && !LostRelicsUtil.isCoolingDown(attacker, ModItems.TURQUOISE_EYE) && LostRelicsUtil.hasAnyTrinket(attacker, ModItems.TURQUOISE_EYE);
 	}
 }

@@ -71,6 +71,6 @@ public class LivingEntityMixin {
 
 	@Unique
 	private boolean hasCursedAmulet() {
-		return LostRelicsUtil.hasTrinket((LivingEntity) (Object) this, ModItems.CURSED_AMULET);
+		return LostRelicsUtil.hasAnyTrinket((LivingEntity) (Object) this, ModItems.CURSED_AMULET);
 	}
 }

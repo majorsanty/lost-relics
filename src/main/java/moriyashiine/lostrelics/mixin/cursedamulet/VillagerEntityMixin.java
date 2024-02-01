@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class VillagerEntityMixin {
 	@Inject(method = "getReputation", at = @At("RETURN"), cancellable = true)
 	private void lostrelics$cursedAmulet$villagerReputation(PlayerEntity player, CallbackInfoReturnable<Integer> cir) {
-		if (LostRelicsUtil.hasTrinket(player, ModItems.CURSED_AMULET)) {
+		if (LostRelicsUtil.hasAnyTrinket(player, ModItems.CURSED_AMULET)) {
 			cir.setReturnValue(cir.getReturnValueI() - 128);
 		}
 	}

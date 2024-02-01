@@ -18,6 +18,6 @@ import java.util.function.Predicate;
 public class IronGolemEntityMixin {
 	@ModifyArg(method = "initGoals", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/ActiveTargetGoal;<init>(Lnet/minecraft/entity/mob/MobEntity;Ljava/lang/Class;IZZLjava/util/function/Predicate;)V", ordinal = 0))
 	private Predicate<LivingEntity> lostrelics$cursedAmulet$angerGolems(Predicate<LivingEntity> value) {
-		return value.or(entity -> LostRelicsUtil.hasTrinket(entity, ModItems.CURSED_AMULET));
+		return value.or(entity -> LostRelicsUtil.hasAnyTrinket(entity, ModItems.CURSED_AMULET));
 	}
 }

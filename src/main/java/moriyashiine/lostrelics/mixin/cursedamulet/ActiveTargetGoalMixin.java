@@ -20,7 +20,7 @@ public class ActiveTargetGoalMixin {
 	@ModifyVariable(method = "<init>(Lnet/minecraft/entity/mob/MobEntity;Ljava/lang/Class;IZZLjava/util/function/Predicate;)V", at = @At("HEAD"), argsOnly = true)
 	private static Predicate<LivingEntity> lostrelics$cursedAmulet$undeadNeutrality(Predicate<LivingEntity> value, MobEntity mob) {
 		if (mob.isUndead()) {
-			Predicate<LivingEntity> notWearingCursedAmulet = entity -> !LostRelicsUtil.hasTrinket(entity, ModItems.CURSED_AMULET);
+			Predicate<LivingEntity> notWearingCursedAmulet = entity -> !LostRelicsUtil.hasAnyTrinket(entity, ModItems.CURSED_AMULET);
 			if (value == null) {
 				return notWearingCursedAmulet;
 			}

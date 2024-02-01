@@ -8,6 +8,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import dev.emi.trinkets.api.SlotReference;
 import moriyashiine.lostrelics.common.LostRelics;
+import moriyashiine.lostrelics.common.LostRelicsUtil;
 import moriyashiine.lostrelics.common.init.ModEntityComponents;
 import moriyashiine.lostrelics.common.init.ModSoundEvents;
 import net.minecraft.client.item.TooltipContext;
@@ -91,7 +92,9 @@ public class CursedAmuletItem extends RelicItem {
 		if (clickType == ClickType.RIGHT && cursorStackReference.get().isEmpty()) {
 			toggleSkeleton(stack, hideSkeleton -> {
 				player.playSound(ModSoundEvents.ITEM_RELIC_TOGGLE, 1, hideSkeleton ? 1 : 0.5F);
-				ModEntityComponents.CURSED_AMULET.get(player).toggleTransform(hideSkeleton);
+				if (LostRelicsUtil.hasSpecificTrinket(player, stack)) {
+					ModEntityComponents.CURSED_AMULET.get(player).toggleTransform(hideSkeleton);
+				}
 			});
 			return true;
 		}

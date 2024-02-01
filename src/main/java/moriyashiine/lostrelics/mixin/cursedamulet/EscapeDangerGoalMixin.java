@@ -25,7 +25,7 @@ public class EscapeDangerGoalMixin {
 
 	@Inject(method = "isInDanger", at = @At("RETURN"), cancellable = true)
 	private void lostrelics$cursedAmulet$fear(CallbackInfoReturnable<Boolean> cir) {
-		if (!cir.getReturnValueZ() && !mob.getWorld().getEntitiesByClass(LivingEntity.class, new Box(mob.getBlockPos()).expand(6), foundEntity -> LostRelicsUtil.hasTrinket(foundEntity, ModItems.CURSED_AMULET)).isEmpty()) {
+		if (!cir.getReturnValueZ() && !mob.getWorld().getEntitiesByClass(LivingEntity.class, new Box(mob.getBlockPos()).expand(6), foundEntity -> LostRelicsUtil.hasAnyTrinket(foundEntity, ModItems.CURSED_AMULET)).isEmpty()) {
 			cir.setReturnValue(true);
 		}
 	}
