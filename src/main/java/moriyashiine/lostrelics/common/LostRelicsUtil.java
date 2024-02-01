@@ -5,6 +5,7 @@
 package moriyashiine.lostrelics.common;
 
 import dev.emi.trinkets.api.SlotReference;
+import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
 import moriyashiine.lostrelics.common.item.RelicItem;
 import net.minecraft.entity.LivingEntity;
@@ -15,36 +16,23 @@ import net.minecraft.util.Pair;
 
 public class LostRelicsUtil {
 	public static boolean hasSpecificTrinket(LivingEntity entity, ItemStack stack) {
-		boolean[] equipped = {false};
-		TrinketsApi.getTrinketComponent(entity).ifPresent(trinketComponent -> {
-			if (trinketComponent.isEquipped(foundStack -> foundStack == stack && RelicItem.isUsable(foundStack))) {
-				equipped[0] = true;
-			}
-		});
-		return equipped[0];
+		TrinketComponent trinketComponent = TrinketsApi.TRINKET_COMPONENT.get(entity);
+		return trinketComponent.isEquipped(foundStack -> foundStack == stack && RelicItem.isUsable(foundStack));
 	}
 
 	public static boolean hasAnyTrinket(LivingEntity entity, Item item) {
-		boolean[] equipped = {false};
-		TrinketsApi.getTrinketComponent(entity).ifPresent(trinketComponent -> {
-			if (trinketComponent.isEquipped(foundStack -> foundStack.isOf(item) && RelicItem.isUsable(foundStack))) {
-				equipped[0] = true;
-			}
-		});
-		return equipped[0];
+		TrinketComponent trinketComponent = TrinketsApi.TRINKET_COMPONENT.get(entity);
+		return trinketComponent.isEquipped(foundStack -> foundStack.isOf(item) && RelicItem.isUsable(foundStack));
 	}
 
 	public static boolean damageTrinket(LivingEntity entity, Item item, int damage) {
-		boolean[] damaged = {false};
-		TrinketsApi.getTrinketComponent(entity).ifPresent(trinketComponent -> {
-			for (Pair<SlotReference, ItemStack> pair : trinketComponent.getEquipped(item)) {
-				if (pair.getRight().isOf(item) && damageTrinket(entity, pair.getRight(), damage)) {
-					damaged[0] = true;
-					break;
-				}
+		TrinketComponent trinketComponent = TrinketsApi.TRINKET_COMPONENT.get(entity);
+		for (Pair<SlotReference, ItemStack> pair : trinketComponent.getEquipped(item)) {
+			if (pair.getRight().isOf(item) && damageTrinket(entity, pair.getRight(), damage)) {
+				return true;
 			}
-		});
-		return damaged[0];
+		}
+		return false;
 	}
 
 	public static boolean damageTrinket(LivingEntity entity, ItemStack stack, int damage) {
