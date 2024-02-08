@@ -1,5 +1,4 @@
 # Lost Relics
-
 Lost Relics seeks to add unique and powerful loot to ancient structures found in Minecraft. However, rather than just increasing stats or applying a potion effect, these treasures offer a wide range of interesting and unique powers and equipment, but of course, many of them have side effects that might be considered unpleasant… I mean, there had to be a reason they were stashed here in the first place?
 
 As of now, seek out the Cursed Amulet, Triple Toothed Snake, Turquoise Eye, and Smoking Mirror in the temples deep in the jungles of the world. They hold great power, but one should be careful of their side effects.
