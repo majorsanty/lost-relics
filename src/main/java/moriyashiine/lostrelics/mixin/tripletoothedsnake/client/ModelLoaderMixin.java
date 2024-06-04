@@ -1,7 +1,6 @@
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-
 package moriyashiine.lostrelics.mixin.tripletoothedsnake.client;
 
 import moriyashiine.lostrelics.common.LostRelics;

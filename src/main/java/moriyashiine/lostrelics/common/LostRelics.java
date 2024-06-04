@@ -1,15 +1,16 @@
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-
 package moriyashiine.lostrelics.common;
 
+import moriyashiine.lostrelics.client.packet.SyncDoppelgangerSlimStatusS2CPayload;
 import moriyashiine.lostrelics.common.event.SmokingMirrorEvent;
 import moriyashiine.lostrelics.common.event.TurquoiseEyeEvent;
 import moriyashiine.lostrelics.common.init.*;
-import moriyashiine.lostrelics.common.packet.SyncDoppelgangerSlimStatusC2SPacket;
+import moriyashiine.lostrelics.common.packet.SyncDoppelgangerSlimStatusC2SPayload;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.util.Identifier;
 
@@ -18,13 +19,13 @@ public class LostRelics implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		ModItems.init();
+		ModDataComponentTypes.init();
 		ModEntityTypes.init();
-		ModWorldGenerators.init();
+		ModItems.init();
 		ModRecipeSerializers.init();
 		ModSoundEvents.init();
 		initEvents();
-		initPackets();
+		initPayloads();
 	}
 
 	public static Identifier id(String value) {
@@ -36,7 +37,12 @@ public class LostRelics implements ModInitializer {
 		ServerLivingEntityEvents.ALLOW_DAMAGE.register(new TurquoiseEyeEvent());
 	}
 
-	private void initPackets() {
-		ServerPlayNetworking.registerGlobalReceiver(SyncDoppelgangerSlimStatusC2SPacket.ID, new SyncDoppelgangerSlimStatusC2SPacket.Receiver());
+	private void initPayloads() {
+		// client payloads
+		PayloadTypeRegistry.playS2C().register(SyncDoppelgangerSlimStatusS2CPayload.ID, SyncDoppelgangerSlimStatusS2CPayload.CODEC);
+		// common payloads
+		PayloadTypeRegistry.playC2S().register(SyncDoppelgangerSlimStatusC2SPayload.ID, SyncDoppelgangerSlimStatusC2SPayload.CODEC);
+		// common receivers
+		ServerPlayNetworking.registerGlobalReceiver(SyncDoppelgangerSlimStatusC2SPayload.ID, new SyncDoppelgangerSlimStatusC2SPayload.Receiver());
 	}
 }

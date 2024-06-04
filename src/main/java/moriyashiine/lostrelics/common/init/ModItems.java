@@ -1,12 +1,10 @@
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-
 package moriyashiine.lostrelics.common.init;
 
 import moriyashiine.lostrelics.common.LostRelics;
 import moriyashiine.lostrelics.common.item.*;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -21,8 +19,8 @@ public class ModItems {
 
 	public static final Item CURSED_AMULET = new CursedAmuletItem();
 	public static final Item SMOKING_MIRROR = new SmokingMirrorItem();
-	public static final Item TRIPLE_TOOTHED_SNAKE = new TripleToothedSnakeItem(ModToolMaterials.TRIPLE_TOOTHED_SNAKE, 3, -2.4F, RelicItem.relicSettings());
-	public static final Item TAINTED_BLOOD_CRYSTAL = new TaintedBloodCrystalItem(new FabricItemSettings().fireproof().rarity(Rarity.UNCOMMON));
+	public static final Item TRIPLE_TOOTHED_SNAKE = new TripleToothedSnakeItem();
+	public static final Item TAINTED_BLOOD_CRYSTAL = new TaintedBloodCrystalItem(new Item.Settings().fireproof().rarity(Rarity.UNCOMMON));
 	public static final Item TURQUOISE_EYE = new RelicItem(104, Items.SKELETON_SKULL, Items.WITHER_SKELETON_SKULL);
 
 	public static void init() {

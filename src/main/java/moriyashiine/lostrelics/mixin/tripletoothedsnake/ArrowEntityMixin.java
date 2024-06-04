@@ -1,32 +1,33 @@
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-
 package moriyashiine.lostrelics.mixin.tripletoothedsnake;
 
-import moriyashiine.lostrelics.common.item.TaintedBloodCrystalItem;
+import moriyashiine.lostrelics.common.init.ModDataComponentTypes;
+import net.minecraft.component.type.PotionContentsComponent;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.projectile.ArrowEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 @Mixin(ArrowEntity.class)
-public class ArrowEntityMixin {
-	@ModifyVariable(method = "initFromStack", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/potion/PotionUtil;getCustomPotionEffects(Lnet/minecraft/item/ItemStack;)Ljava/util/List;"))
-	private Collection<StatusEffectInstance> lostrelics$tripleToothedSnake$tippedDurationFix(Collection<StatusEffectInstance> value, ItemStack stack) {
-		if (TaintedBloodCrystalItem.isSpecialPotion(stack)) {
-			List<StatusEffectInstance> list = new ArrayList<>(value);
-			for (int i = value.size() - 1; i >= 0; i--) {
-				StatusEffectInstance instance = list.get(i);
-				list.set(i, new StatusEffectInstance(instance.getEffectType(), instance.getDuration() / 8, instance.getAmplifier(), instance.isAmbient(), instance.shouldShowParticles(), instance.shouldShowIcon()));
+public abstract class ArrowEntityMixin extends PersistentProjectileEntity {
+	protected ArrowEntityMixin(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
+		super(entityType, world);
+	}
+
+	@ModifyVariable(method = "onHit", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/entity/projectile/ArrowEntity;getPotionContents()Lnet/minecraft/component/type/PotionContentsComponent;"))
+	private PotionContentsComponent lostrelics$tripleToothedSnake(PotionContentsComponent value) {
+		if (asItemStack().contains(ModDataComponentTypes.TAINTED_POTION)) {
+			PotionContentsComponent reduced = PotionContentsComponent.DEFAULT;
+			for (StatusEffectInstance instance : value.getEffects()) {
+				reduced = reduced.with(new StatusEffectInstance(instance.getEffectType(), Math.max(1, instance.getDuration() / 8), instance.getAmplifier(), instance.isAmbient(), instance.shouldShowParticles(), instance.shouldShowIcon()));
 			}
-			return list;
+			return reduced;
 		}
 		return value;
 	}

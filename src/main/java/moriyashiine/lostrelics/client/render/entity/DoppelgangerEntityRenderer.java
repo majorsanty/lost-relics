@@ -1,8 +1,7 @@
-package moriyashiine.lostrelics.client.render.entity;
-
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
+package moriyashiine.lostrelics.client.render.entity;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import moriyashiine.lostrelics.client.render.entity.feature.DoppelgangerArmorFeatureRenderer;
@@ -36,7 +35,7 @@ public class DoppelgangerEntityRenderer extends BipedEntityRenderer<Doppelganger
 	@Override
 	public Identifier getTexture(DoppelgangerEntity entity) {
 		if (entity.getEntityToCopy() instanceof AbstractClientPlayerEntity clientPlayer) {
-			return clientPlayer.getSkinTexture();
+			return clientPlayer.getSkinTextures().texture();
 		}
 		return DefaultSkinHelper.getTexture();
 	}

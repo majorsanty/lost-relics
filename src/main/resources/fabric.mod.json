@@ -9,7 +9,7 @@
 	"cybercat5555"
   ],
   "contact": {
-	"homepage": "https://www.curseforge.com/minecraft/mc-mods/lost-relics",
+	"homepage": "https://modrinth.com/mod/lost-relics",
 	"sources": "https://github.com/MoriyaShiine/lost-relics",
 	"issues": "https://github.com/MoriyaShiine/lost-relics/issues"
   },
@@ -36,8 +36,8 @@
   "accessWidener": "lostrelics.accesswidener",
   "depends": {
 	"fabricloader": "*",
-	"minecraft": "~1.20.1",
-	"java": ">=17",
+	"minecraft": "~1.20.6",
+	"java": ">=21",
 	"fabric-api": "*",
 	"trinkets": "*"
   },

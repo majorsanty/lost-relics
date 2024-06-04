@@ -1,13 +1,14 @@
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-
 package moriyashiine.lostrelics.common.entity.projectile;
 
 import moriyashiine.lostrelics.common.init.ModEntityTypes;
 import moriyashiine.lostrelics.common.init.ModItems;
 import moriyashiine.lostrelics.common.init.ModSoundEvents;
 import net.minecraft.block.BlockState;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -17,7 +18,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.potion.PotionUtil;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.hit.BlockHitResult;
@@ -35,17 +35,19 @@ public class TaintedBloodCrystalEntity extends PersistentProjectileEntity {
 		super(entityType, world);
 	}
 
-	public TaintedBloodCrystalEntity(World world, double x, double y, double z) {
-		super(ModEntityTypes.TAINTED_BLOOD_CRYSTAL, x, y, z, world);
+	public TaintedBloodCrystalEntity(World world, double x, double y, double z, ItemStack stack) {
+		super(ModEntityTypes.TAINTED_BLOOD_CRYSTAL, x, y, z, world, stack);
+		stack.getOrDefault(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT).getEffects().forEach(instance -> effects.add(new StatusEffectInstance(instance)));
 	}
 
-	public TaintedBloodCrystalEntity(World world, LivingEntity owner) {
-		super(ModEntityTypes.TAINTED_BLOOD_CRYSTAL, owner, world);
+	public TaintedBloodCrystalEntity(World world, LivingEntity owner, ItemStack stack) {
+		super(ModEntityTypes.TAINTED_BLOOD_CRYSTAL, owner, world, stack);
+		stack.getOrDefault(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT).getEffects().forEach(instance -> effects.add(new StatusEffectInstance(instance)));
 	}
 
 	@Override
-	protected ItemStack asItemStack() {
-		return PotionUtil.setCustomPotionEffects(new ItemStack(ModItems.TAINTED_BLOOD_CRYSTAL), effects);
+	protected ItemStack getDefaultItemStack() {
+		return ModItems.TAINTED_BLOOD_CRYSTAL.getDefaultStack();
 	}
 
 	@Override
@@ -71,10 +73,6 @@ public class TaintedBloodCrystalEntity extends PersistentProjectileEntity {
 			addParticles();
 			discard();
 		}
-	}
-
-	public void initFromStack(ItemStack stack) {
-		effects.addAll(PotionUtil.getCustomPotionEffects(stack));
 	}
 
 	private void addParticles() {

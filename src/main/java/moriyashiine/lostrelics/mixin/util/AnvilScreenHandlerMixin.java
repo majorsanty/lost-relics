@@ -1,10 +1,9 @@
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-
 package moriyashiine.lostrelics.mixin.util;
 
-import moriyashiine.lostrelics.common.init.ModTags;
+import moriyashiine.lostrelics.common.tag.ModItemTags;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.*;
@@ -29,7 +28,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
 	@Inject(method = "updateResult", at = @At("TAIL"))
 	private void lostrelics$util$fixedRelicRepairCost(CallbackInfo ci) {
 		ItemStack slot0 = input.getStack(0);
-		if (slot0.isIn(ModTags.ItemTags.RELICS) && slot0.getItem().canRepair(slot0, input.getStack(1))) {
+		if (slot0.isIn(ModItemTags.RELICS) && slot0.getItem().canRepair(slot0, input.getStack(1))) {
 			output.getStack(0).setDamage(0);
 			levelCost.set(10);
 		}

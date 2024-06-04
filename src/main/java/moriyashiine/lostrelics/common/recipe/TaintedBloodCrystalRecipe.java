@@ -1,26 +1,24 @@
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-
 package moriyashiine.lostrelics.common.recipe;
 
 import moriyashiine.lostrelics.common.init.ModItems;
 import moriyashiine.lostrelics.common.init.ModRecipeSerializers;
 import moriyashiine.lostrelics.common.item.TripleToothedSnakeItem;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionUtil;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.util.Identifier;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
 public class TaintedBloodCrystalRecipe extends SpecialCraftingRecipe {
-	public TaintedBloodCrystalRecipe(Identifier id, CraftingRecipeCategory category) {
-		super(id, category);
+	public TaintedBloodCrystalRecipe(CraftingRecipeCategory category) {
+		super(category);
 	}
 
 	@Override
@@ -40,12 +38,12 @@ public class TaintedBloodCrystalRecipe extends SpecialCraftingRecipe {
 	}
 
 	@Override
-	public ItemStack craft(RecipeInputInventory inventory, DynamicRegistryManager registryManager) {
+	public ItemStack craft(RecipeInputInventory inventory, RegistryWrapper.WrapperLookup lookup) {
 		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack stack = inventory.getStack(i);
 			if (stack.isOf(ModItems.TRIPLE_TOOTHED_SNAKE)) {
 				ItemStack crystal = new ItemStack(ModItems.TAINTED_BLOOD_CRYSTAL, TripleToothedSnakeItem.getCharges(stack));
-				PotionUtil.setCustomPotionEffects(crystal, PotionUtil.getCustomPotionEffects(stack));
+				crystal.set(DataComponentTypes.POTION_CONTENTS, stack.get(DataComponentTypes.POTION_CONTENTS));
 				return crystal;
 			}
 		}

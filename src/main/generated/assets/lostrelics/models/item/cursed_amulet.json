@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "lostrelics:item/cursed_amulet"
+	"layer0": "lostrelics:item/cursed_amulet"
   }
 }

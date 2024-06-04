@@ -9,7 +9,7 @@
 			"entity": "this",
 			"predicate": {
 			  "location": {
-				"structure": "minecraft:jungle_pyramid"
+				"structures": "minecraft:jungle_pyramid"
 			  }
 			}
 		  }
@@ -19,16 +19,13 @@
 	}
   },
   "display": {
-	"announce_to_chat": true,
 	"description": {
 	  "translate": "advancements.lostrelics.adventure.find_jungle_pyramid.description"
 	},
-	"frame": "task",
-	"hidden": false,
 	"icon": {
-	  "item": "minecraft:mossy_cobblestone"
+	  "count": 1,
+	  "id": "minecraft:mossy_cobblestone"
 	},
-	"show_toast": true,
 	"title": {
 	  "translate": "advancements.lostrelics.adventure.find_jungle_pyramid.title"
 	}

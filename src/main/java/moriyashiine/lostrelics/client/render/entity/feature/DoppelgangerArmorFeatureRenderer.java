@@ -1,8 +1,7 @@
-package moriyashiine.lostrelics.client.render.entity.feature;
-
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
+package moriyashiine.lostrelics.client.render.entity.feature;
 
 import moriyashiine.lostrelics.common.entity.DoppelgangerEntity;
 import net.minecraft.client.render.VertexConsumerProvider;

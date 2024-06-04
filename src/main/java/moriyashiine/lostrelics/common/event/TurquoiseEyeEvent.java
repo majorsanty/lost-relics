@@ -1,7 +1,6 @@
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-
 package moriyashiine.lostrelics.common.event;
 
 import moriyashiine.lostrelics.common.LostRelicsUtil;
@@ -15,7 +14,7 @@ import net.minecraft.entity.effect.StatusEffects;
 public class TurquoiseEyeEvent implements ServerLivingEntityEvents.AllowDamage {
 	@Override
 	public boolean allowDamage(LivingEntity entity, DamageSource source, float amount) {
-		if (entity.getHealth() == entity.getMaxHealth() && source.getAttacker() instanceof LivingEntity livingAttacker && LostRelicsUtil.applyCooldownAndDamage(livingAttacker, ModItems.TURQUOISE_EYE, 600, 1)) {
+		if (entity.getHealth() == entity.getMaxHealth() && source.getAttacker() instanceof LivingEntity livingAttacker && LostRelicsUtil.cooldownAndDamage(livingAttacker, ModItems.TURQUOISE_EYE, 600, 1)) {
 			entity.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 100, 1));
 			entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 100, 1));
 		}
@@ -30,6 +29,6 @@ public class TurquoiseEyeEvent implements ServerLivingEntityEvents.AllowDamage {
 	}
 
 	public static boolean applyTurquoiseEye(LivingEntity entity, LivingEntity attacker) {
-		return entity.getHealth() == entity.getMaxHealth() && !LostRelicsUtil.isCoolingDown(attacker, ModItems.TURQUOISE_EYE) && LostRelicsUtil.hasAnyTrinket(attacker, ModItems.TURQUOISE_EYE);
+		return entity.getHealth() == entity.getMaxHealth() && !LostRelicsUtil.isCoolingDown(attacker, ModItems.TURQUOISE_EYE) && LostRelicsUtil.hasEquippedRelic(attacker, ModItems.TURQUOISE_EYE);
 	}
 }

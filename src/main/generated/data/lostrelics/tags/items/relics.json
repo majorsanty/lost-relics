@@ -1,6 +1,5 @@
 {
-  "replace": false,
   "values": [
-    "#lostrelics:jungle_relics"
+	"#lostrelics:jungle_relics"
   ]
 }

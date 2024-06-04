@@ -1,7 +1,6 @@
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-
 package moriyashiine.lostrelics.mixin.smokingmirror;
 
 import moriyashiine.lostrelics.common.LostRelicsUtil;
@@ -24,10 +23,9 @@ public abstract class LivingEntityMixin extends Entity {
 		super(type, world);
 	}
 
-	@SuppressWarnings("ConstantValue")
-	@ModifyVariable(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;wakeUp()V", shift = At.Shift.BY, by = 2), argsOnly = true)
+	@ModifyVariable(method = "applyDamage", at = @At("HEAD"), argsOnly = true)
 	private float lostrelics$smokingMirror$reflect(float value, DamageSource source) {
-		if (!source.isIn(DamageTypeTags.WITCH_RESISTANT_TO) && source.getAttacker() instanceof LivingEntity attacker && LostRelicsUtil.applyCooldownAndDamage((LivingEntity) (Object) this, ModItems.SMOKING_MIRROR, 60, 1)) {
+		if (!source.isIn(DamageTypeTags.WITCH_RESISTANT_TO) && source.getAttacker() instanceof LivingEntity attacker && LostRelicsUtil.cooldownAndDamage((LivingEntity) (Object) this, ModItems.SMOKING_MIRROR, 60, 1)) {
 			getWorld().spawnEntity(new SmokeBallEntity(getWorld(), (LivingEntity) (Object) this, attacker, value * 0.25F));
 			getWorld().playSound(null, getBlockPos(), ModSoundEvents.ENTITY_GENERIC_SPAWN, getSoundCategory(), 1, 1);
 			return value * 0.75F;

@@ -1,8 +1,7 @@
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-
-package moriyashiine.lostrelics.data.generators;
+package moriyashiine.lostrelics.data.provider;
 
 import moriyashiine.lostrelics.common.init.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;

@@ -1,10 +1,9 @@
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-
 package moriyashiine.lostrelics.common.item;
 
-import moriyashiine.lostrelics.client.packet.SyncDoppelgangerSlimStatusS2CPacket;
+import moriyashiine.lostrelics.client.packet.SyncDoppelgangerSlimStatusS2CPayload;
 import moriyashiine.lostrelics.common.LostRelicsUtil;
 import moriyashiine.lostrelics.common.entity.DoppelgangerEntity;
 import moriyashiine.lostrelics.common.init.ModDamageTypes;
@@ -35,7 +34,7 @@ public class SmokingMirrorItem extends RelicItem {
 		if (isUsable(stack, 10)) {
 			if (!world.isClient) {
 				boolean mirrorDemon = user.isSneaking();
-				if (LostRelicsUtil.applyCooldownAndDamage(user, stack, mirrorDemon ? 1200 : 600, mirrorDemon ? 70 : 10)) {
+				if (LostRelicsUtil.cooldownAndDamage(user, stack, mirrorDemon ? 1200 : 600, mirrorDemon ? 70 : 10)) {
 					user.damage(ModDamageTypes.relic(world), user.getMaxHealth() * (mirrorDemon ? 0.5F : 0.25F));
 					world.playSound(null, user.getBlockPos(), ModSoundEvents.ENTITY_GENERIC_TRANSFORM, user.getSoundCategory(), 1, 1);
 					if (user.isAlive()) {
@@ -66,7 +65,7 @@ public class SmokingMirrorItem extends RelicItem {
 							if (mirrorDemon) {
 								doppelganger.getDataTracker().set(DoppelgangerEntity.MIRROR_DEMON, true);
 							}
-							SyncDoppelgangerSlimStatusS2CPacket.send((ServerPlayerEntity) user, doppelganger);
+							SyncDoppelgangerSlimStatusS2CPayload.send((ServerPlayerEntity) user, doppelganger);
 							world.playSound(null, user.getBlockPos(), ModSoundEvents.ENTITY_GENERIC_SPAWN, doppelganger.getSoundCategory(), 1, 1);
 							((ServerWorld) world).spawnParticles(ParticleTypes.SMOKE, doppelganger.getParticleX(0.5), doppelganger.getRandomBodyY(), doppelganger.getParticleZ(0.5), 8, MathHelper.nextDouble(doppelganger.getRandom(), -0.5, 0.5), MathHelper.nextDouble(doppelganger.getRandom(), -0.5, 0.5), MathHelper.nextDouble(doppelganger.getRandom(), -0.5, 0.5), 1);
 							world.spawnEntity(doppelganger);

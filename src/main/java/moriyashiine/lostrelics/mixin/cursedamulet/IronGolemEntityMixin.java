@@ -1,7 +1,6 @@
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-
 package moriyashiine.lostrelics.mixin.cursedamulet;
 
 import moriyashiine.lostrelics.common.LostRelicsUtil;
@@ -17,7 +16,7 @@ import java.util.function.Predicate;
 @Mixin(IronGolemEntity.class)
 public class IronGolemEntityMixin {
 	@ModifyArg(method = "initGoals", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/ActiveTargetGoal;<init>(Lnet/minecraft/entity/mob/MobEntity;Ljava/lang/Class;IZZLjava/util/function/Predicate;)V", ordinal = 0))
-	private Predicate<LivingEntity> lostrelics$cursedAmulet$angerGolems(Predicate<LivingEntity> value) {
-		return value.or(entity -> LostRelicsUtil.hasAnyTrinket(entity, ModItems.CURSED_AMULET));
+	private Predicate<LivingEntity> lostrelics$cursedAmulet(Predicate<LivingEntity> value) {
+		return value.or(entity -> LostRelicsUtil.hasEquippedRelic(entity, ModItems.CURSED_AMULET));
 	}
 }

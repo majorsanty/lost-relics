@@ -1,13 +1,14 @@
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-
 package moriyashiine.lostrelics.common.init;
 
-import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
-import net.fabricmc.yarn.constants.MiningLevels;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
+import net.minecraft.block.Block;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.TagKey;
 
 public class ModToolMaterials {
 	public static final ToolMaterial TRIPLE_TOOTHED_SNAKE = new ToolMaterial() {
@@ -23,12 +24,12 @@ public class ModToolMaterials {
 
 		@Override
 		public float getAttackDamage() {
-			return 1.5F;
+			return 0;
 		}
 
 		@Override
-		public int getMiningLevel() {
-			return MiningLevels.IRON;
+		public TagKey<Block> getInverseTag() {
+			return BlockTags.INCORRECT_FOR_STONE_TOOL;
 		}
 
 		@Override
@@ -38,7 +39,7 @@ public class ModToolMaterials {
 
 		@Override
 		public Ingredient getRepairIngredient() {
-			return Ingredient.fromTag(ConventionalItemTags.QUARTZ);
+			return Ingredient.fromTag(ConventionalItemTags.QUARTZ_GEMS);
 		}
 	};
 }

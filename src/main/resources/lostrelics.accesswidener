@@ -1,3 +1,4 @@
 accessWidener v2 named
+accessible method net/minecraft/item/ItemStack appendAttributeModifierTooltip (Ljava/util/function/Consumer;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/registry/entry/RegistryEntry;Lnet/minecraft/entity/attribute/EntityAttributeModifier;)V
 extendable method net/minecraft/client/render/entity/feature/ArmorFeatureRenderer getModel (Lnet/minecraft/entity/EquipmentSlot;)Lnet/minecraft/client/render/entity/model/BipedEntityModel;
 accessible method net/minecraft/client/render/entity/feature/ArmorFeatureRenderer usesInnerModel (Lnet/minecraft/entity/EquipmentSlot;)Z

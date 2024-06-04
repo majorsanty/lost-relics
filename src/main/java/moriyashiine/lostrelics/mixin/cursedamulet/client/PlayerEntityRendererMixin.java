@@ -1,7 +1,6 @@
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-
 package moriyashiine.lostrelics.mixin.cursedamulet.client;
 
 import moriyashiine.lostrelics.client.render.model.entity.RelicSkeletonModel;
@@ -30,7 +29,7 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
 	private PlayerEntityModel<AbstractClientPlayerEntity> normalModel, relicSkeletonModel;
 
 	@Unique
-	private boolean isRelicSkeleton = false, wasRelicSkeleton = false;
+	private boolean isRelicSkeleton = false;
 
 	public PlayerEntityRendererMixin(EntityRendererFactory.Context ctx, PlayerEntityModel<AbstractClientPlayerEntity> model, float shadowRadius) {
 		super(ctx, model, shadowRadius);
@@ -64,14 +63,20 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
 		updateRelicSkeletonState(player);
 	}
 
+	@Inject(method = "render(Lnet/minecraft/client/network/AbstractClientPlayerEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At("TAIL"))
+	private void lostrelics$cursedAmulet$resetSkeleton(AbstractClientPlayerEntity player, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, CallbackInfo ci) {
+		if (player.currentScreenHandler == null) {
+			model = normalModel;
+		}
+	}
+
 	@Unique
 	private void updateRelicSkeletonState(PlayerEntity player) {
 		isRelicSkeleton = ModEntityComponents.CURSED_AMULET.get(player).shouldTheSkeletonAppear();
 		if (isRelicSkeleton) {
 			model = relicSkeletonModel;
-		} else if (wasRelicSkeleton) {
+		} else {
 			model = normalModel;
 		}
-		wasRelicSkeleton = isRelicSkeleton;
 	}
 }

@@ -1,7 +1,6 @@
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-
 package moriyashiine.lostrelics.common.entity;
 
 import it.unimi.dsi.fastutil.objects.Object2BooleanMap;
@@ -29,6 +28,7 @@ import net.minecraft.item.Items;
 import net.minecraft.item.RangedWeaponItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.MathHelper;
@@ -71,6 +71,11 @@ public class DoppelgangerEntity extends TameableEntity {
 	}
 
 	@Override
+	public boolean isBreedingItem(ItemStack stack) {
+		return false;
+	}
+
+	@Override
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
 		dataTracker.set(SLIM, nbt.getBoolean("Slim"));
@@ -93,11 +98,11 @@ public class DoppelgangerEntity extends TameableEntity {
 	}
 
 	@Override
-	protected void initDataTracker() {
-		super.initDataTracker();
-		dataTracker.startTracking(SLIM, false);
-		dataTracker.startTracking(MIRROR_DEMON, false);
-		dataTracker.startTracking(TARGET_PLAYER, OptionalInt.empty());
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(SLIM, false);
+		builder.add(MIRROR_DEMON, false);
+		builder.add(TARGET_PLAYER, OptionalInt.empty());
 	}
 
 	@Override
@@ -127,8 +132,9 @@ public class DoppelgangerEntity extends TameableEntity {
 				return;
 			}
 			for (EntityAttribute attribute : Registries.ATTRIBUTE) {
-				if (attribute != EntityAttributes.GENERIC_MOVEMENT_SPEED && getAttributes().hasAttribute(attribute) && getEntityToCopy().getAttributes().hasAttribute(attribute)) {
-					getAttributeInstance(attribute).setBaseValue(getEntityToCopy().getAttributeValue(attribute));
+				RegistryEntry<EntityAttribute> entry = Registries.ATTRIBUTE.getEntry(attribute);
+				if (entry != EntityAttributes.GENERIC_MOVEMENT_SPEED && getAttributes().hasAttribute(entry) && getEntityToCopy().getAttributes().hasAttribute(entry)) {
+					getAttributeInstance(entry).setBaseValue(getEntityToCopy().getAttributeValue(entry));
 				}
 			}
 			if (getOwner() instanceof PlayerEntity player) {
@@ -214,7 +220,7 @@ public class DoppelgangerEntity extends TameableEntity {
 
 	@Override
 	public void setOwner(PlayerEntity player) {
-		setTamed(true);
+		setTamed(true, false);
 		setOwnerUuid(player.getUuid());
 	}
 

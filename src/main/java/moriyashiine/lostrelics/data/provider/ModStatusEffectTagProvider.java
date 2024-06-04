@@ -1,10 +1,9 @@
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
+package moriyashiine.lostrelics.data.provider;
 
-package moriyashiine.lostrelics.data.generators;
-
-import moriyashiine.lostrelics.common.init.ModTags;
+import moriyashiine.lostrelics.common.tag.ModStatusEffectTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.entity.effect.StatusEffect;
@@ -21,6 +20,8 @@ public class ModStatusEffectTagProvider extends FabricTagProvider<StatusEffect> 
 
 	@Override
 	protected void configure(RegistryWrapper.WrapperLookup arg) {
-		getOrCreateTagBuilder(ModTags.StatusEffectTags.BYPASSES_CURSED_AMULET).add(StatusEffects.INSTANT_DAMAGE).add(StatusEffects.WITHER);
+		getOrCreateTagBuilder(ModStatusEffectTags.BYPASSES_CURSED_AMULET)
+				.add(StatusEffects.INSTANT_DAMAGE.value())
+				.add(StatusEffects.WITHER.value());
 	}
 }

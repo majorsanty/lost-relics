@@ -1,8 +1,7 @@
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-
-package moriyashiine.lostrelics.data.generators;
+package moriyashiine.lostrelics.data.provider;
 
 import moriyashiine.lostrelics.common.init.ModEntityTypes;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -19,6 +18,7 @@ public class ModEntityTypeTagProvider extends FabricTagProvider.EntityTypeTagPro
 
 	@Override
 	protected void configure(RegistryWrapper.WrapperLookup arg) {
-		getOrCreateTagBuilder(EntityTypeTags.ARROWS).add(ModEntityTypes.TAINTED_BLOOD_CRYSTAL);
+		getOrCreateTagBuilder(EntityTypeTags.ARROWS)
+				.add(ModEntityTypes.TAINTED_BLOOD_CRYSTAL);
 	}
 }

@@ -1,11 +1,9 @@
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-
 package moriyashiine.lostrelics.common.item;
 
 import dev.emi.trinkets.api.TrinketItem;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Rarity;
@@ -26,7 +24,7 @@ public class RelicItem extends TrinketItem {
 	}
 
 	public RelicItem(int damage, Item... repairIngredients) {
-		this(relicSettings().maxDamage(damage + 1), repairIngredients);
+		this(relicSettings().maxDamage(damage), repairIngredients);
 	}
 
 	@Override
@@ -44,12 +42,12 @@ public class RelicItem extends TrinketItem {
 		return false;
 	}
 
-	public static FabricItemSettings relicSettings() {
-		return new FabricItemSettings().fireproof().rarity(Rarity.RARE).maxCount(1);
+	public static Settings relicSettings() {
+		return new Settings().fireproof().rarity(Rarity.RARE).maxCount(1);
 	}
 
 	public static boolean isUsable(ItemStack stack, int damage) {
-		return !stack.isDamageable() || stack.getDamage() + damage < stack.getMaxDamage() - 1;
+		return !stack.isDamageable() || stack.getDamage() + damage < stack.getMaxDamage();
 	}
 
 	public static boolean isUsable(ItemStack stack) {

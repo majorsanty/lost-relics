@@ -1,24 +1,23 @@
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-
 package moriyashiine.lostrelics.mixin.cursedamulet;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import moriyashiine.lostrelics.common.LostRelicsUtil;
 import moriyashiine.lostrelics.common.init.ModItems;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(VillagerEntity.class)
 public class VillagerEntityMixin {
-	@Inject(method = "getReputation", at = @At("RETURN"), cancellable = true)
-	private void lostrelics$cursedAmulet$villagerReputation(PlayerEntity player, CallbackInfoReturnable<Integer> cir) {
-		if (LostRelicsUtil.hasAnyTrinket(player, ModItems.CURSED_AMULET)) {
-			cir.setReturnValue(cir.getReturnValueI() - 128);
+	@ModifyReturnValue(method = "getReputation", at = @At("RETURN"))
+	private int lostrelics$cursedAmulet(int original, PlayerEntity player) {
+		if (LostRelicsUtil.hasEquippedRelic(player, ModItems.CURSED_AMULET)) {
+			return original - 128;
 		}
+		return original;
 	}
 }

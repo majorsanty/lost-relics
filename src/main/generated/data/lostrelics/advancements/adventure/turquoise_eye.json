@@ -1,13 +1,11 @@
 {
   "parent": "lostrelics:adventure/find_jungle_pyramid",
   "criteria": {
-	"turquoise_eye": {
+	"has_relic": {
 	  "conditions": {
 		"items": [
 		  {
-			"items": [
-			  "lostrelics:turquoise_eye"
-			]
+			"items": "lostrelics:turquoise_eye"
 		  }
 		]
 	  },
@@ -15,23 +13,20 @@
 	}
   },
   "display": {
-	"announce_to_chat": true,
 	"description": {
 	  "translate": "advancements.lostrelics.adventure.turquoise_eye.description"
 	},
-	"frame": "task",
-	"hidden": false,
 	"icon": {
-	  "item": "lostrelics:turquoise_eye"
+	  "count": 1,
+	  "id": "lostrelics:turquoise_eye"
 	},
-	"show_toast": true,
 	"title": {
 	  "translate": "advancements.lostrelics.adventure.turquoise_eye.title"
 	}
   },
   "requirements": [
 	[
-	  "turquoise_eye"
+	  "has_relic"
 	]
   ],
   "sends_telemetry_event": true

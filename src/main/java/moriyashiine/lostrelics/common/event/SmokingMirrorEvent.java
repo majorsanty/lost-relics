@@ -1,7 +1,6 @@
 /*
- * All Rights Reserved (c) MoriyaShiine
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-
 package moriyashiine.lostrelics.common.event;
 
 import moriyashiine.lostrelics.common.LostRelicsUtil;
@@ -16,7 +15,7 @@ import net.minecraft.registry.tag.DamageTypeTags;
 public class SmokingMirrorEvent implements ServerLivingEntityEvents.AllowDamage {
 	@Override
 	public boolean allowDamage(LivingEntity entity, DamageSource source, float amount) {
-		if (entity.getRandom().nextBoolean() && source.isIn(DamageTypeTags.WITCH_RESISTANT_TO) && source.getAttacker() instanceof LivingEntity attacker && LostRelicsUtil.applyCooldownAndDamage(entity, ModItems.SMOKING_MIRROR, 60, 1)) {
+		if (entity.getRandom().nextBoolean() && source.isIn(DamageTypeTags.WITCH_RESISTANT_TO) && source.getAttacker() instanceof LivingEntity attacker && LostRelicsUtil.cooldownAndDamage(entity, ModItems.SMOKING_MIRROR, 60, 1)) {
 			entity.getWorld().spawnEntity(new SmokeBallEntity(entity.getWorld(), entity, attacker, amount * 1.2F));
 			entity.getWorld().playSound(null, entity.getBlockPos(), ModSoundEvents.ENTITY_GENERIC_SPAWN, entity.getSoundCategory(), 1, 1);
 			return false;
