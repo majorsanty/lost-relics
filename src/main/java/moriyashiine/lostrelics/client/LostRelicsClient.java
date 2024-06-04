@@ -5,6 +5,7 @@ package moriyashiine.lostrelics.client;
 
 import dev.emi.trinkets.api.client.TrinketRendererRegistry;
 import moriyashiine.lostrelics.client.packet.SyncDoppelgangerSlimStatusS2CPayload;
+import moriyashiine.lostrelics.client.render.blockentity.AltarBlockEntityRenderer;
 import moriyashiine.lostrelics.client.render.entity.DoppelgangerEntityRenderer;
 import moriyashiine.lostrelics.client.render.entity.SmokeBallEntityRenderer;
 import moriyashiine.lostrelics.client.render.entity.TaintedBloodCrystalEntityRenderer;
@@ -12,6 +13,7 @@ import moriyashiine.lostrelics.client.render.model.entity.RelicSkeletonModel;
 import moriyashiine.lostrelics.client.render.model.trinket.FaceTrinketRenderer;
 import moriyashiine.lostrelics.client.render.model.trinket.NecklaceTrinketRenderer;
 import moriyashiine.lostrelics.common.LostRelics;
+import moriyashiine.lostrelics.common.init.ModBlockEntityTypes;
 import moriyashiine.lostrelics.common.init.ModEntityTypes;
 import moriyashiine.lostrelics.common.init.ModItems;
 import moriyashiine.lostrelics.common.item.RelicItem;
@@ -21,6 +23,7 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ChargedProjectilesComponent;
 import net.minecraft.item.Items;
@@ -29,6 +32,7 @@ import net.minecraft.util.Identifier;
 public class LostRelicsClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
+		BlockEntityRendererFactories.register(ModBlockEntityTypes.ALTAR, ctx -> new AltarBlockEntityRenderer());
 		ModelPredicateProviderRegistry.register(ModItems.TURQUOISE_EYE, new Identifier("broken"), (stack, world, entity, seed) -> RelicItem.isUsable(stack) ? 0 : 1);
 		ModelPredicateProviderRegistry.register(ModItems.SMOKING_MIRROR, new Identifier("broken"), (stack, world, entity, seed) -> RelicItem.isUsable(stack) ? 0 : 1);
 		ModelPredicateProviderRegistry.register(ModItems.TRIPLE_TOOTHED_SNAKE, new Identifier("one"), (stack, world, entity, seed) -> RelicItem.isUsable(stack) && TripleToothedSnakeItem.getCharges(stack) == 1 ? 1 : 0);

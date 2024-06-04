@@ -19,7 +19,8 @@
 	"tripletoothedsnake.TippedArrowRecipeMixin",
 	"turquoiseeye.LivingEntityMixin",
 	"util.AnvilScreenHandlerMixin",
-	"util.ItemStackMixin"
+	"util.ItemStackMixin",
+	"util.StructurePieceMixin"
   ],
   "client": [
 	"cursedamulet.client.PlayerEntityRendererMixin",

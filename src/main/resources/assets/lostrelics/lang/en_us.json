@@ -1,5 +1,6 @@
 {
   "itemGroup.lostrelics": "Lost Relics",
+  "block.lostrelics.jungle_altar": "Jungle Altar",
   "item.lostrelics.cursed_amulet": "Cursed Amulet",
   "item.lostrelics.smoking_mirror": "Smoking Mirror",
   "item.lostrelics.triple_toothed_snake": "Triple Toothed Snake",
@@ -26,6 +27,7 @@
   "advancements.lostrelics.adventure.turquoise_eye.description": "Find a Turquoise Eye in a Jungle Pyramid",
   "death.attack.lostrelics.relic": "%1$s left the confines of this world",
   "death.attack.lostrelics.relic.player": "%1$s left the confines of this world whilst fighting %2$s",
+  "subtitles.lostrelics.block.altar.convert": "Relic converts",
   "subtitles.lostrelics.entity.generic.transform": "Something transforms",
   "subtitles.lostrelics.entity.generic.spawn": "Something spawns",
   "subtitles.lostrelics.entity.tainted_blood_crystal.shatter": "Tainted Blood Crystal shatters",

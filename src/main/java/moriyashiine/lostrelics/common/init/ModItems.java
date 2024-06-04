@@ -6,6 +6,7 @@ package moriyashiine.lostrelics.common.init;
 import moriyashiine.lostrelics.common.LostRelics;
 import moriyashiine.lostrelics.common.item.*;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
@@ -17,6 +18,8 @@ import net.minecraft.util.Rarity;
 public class ModItems {
 	public static ItemGroup GROUP;
 
+	public static final Item JUNGLE_ALTAR = new BlockItem(ModBlocks.JUNGLE_ALTAR, new Item.Settings());
+
 	public static final Item CURSED_AMULET = new CursedAmuletItem();
 	public static final Item SMOKING_MIRROR = new SmokingMirrorItem();
 	public static final Item TRIPLE_TOOTHED_SNAKE = new TripleToothedSnakeItem();
@@ -25,6 +28,7 @@ public class ModItems {
 
 	public static void init() {
 		GROUP = FabricItemGroup.builder().displayName(Text.translatable("itemGroup." + LostRelics.MOD_ID)).icon(CURSED_AMULET::getDefaultStack).entries((displayContext, entries) -> {
+			entries.add(JUNGLE_ALTAR);
 			entries.add(CURSED_AMULET);
 			entries.add(SMOKING_MIRROR);
 			entries.add(TRIPLE_TOOTHED_SNAKE);
@@ -32,6 +36,9 @@ public class ModItems {
 			entries.add(TURQUOISE_EYE);
 		}).build();
 		Registry.register(Registries.ITEM_GROUP, LostRelics.id(LostRelics.MOD_ID), GROUP);
+
+		Registry.register(Registries.ITEM, LostRelics.id("jungle_altar"), JUNGLE_ALTAR);
+
 		Registry.register(Registries.ITEM, LostRelics.id("cursed_amulet"), CURSED_AMULET);
 		Registry.register(Registries.ITEM, LostRelics.id("smoking_mirror"), SMOKING_MIRROR);
 		Registry.register(Registries.ITEM, LostRelics.id("triple_toothed_snake"), TRIPLE_TOOTHED_SNAKE);

@@ -12,6 +12,8 @@ public class ModDataGenerator implements DataGeneratorEntrypoint {
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 		pack.addProvider(ModAdvancementProvider::new);
+		pack.addProvider(ModBlockLootTableProvider::new);
+		pack.addProvider(ModBlockTagProvider::new);
 		pack.addProvider(ModDamageTypeTagProvider::new);
 		pack.addProvider(ModEntityTypeTagProvider::new);
 		pack.addProvider(ModItemTagProvider::new);

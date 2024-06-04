@@ -19,6 +19,8 @@ public class LostRelics implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModBlocks.init();
+		ModBlockEntityTypes.init();
 		ModDataComponentTypes.init();
 		ModEntityTypes.init();
 		ModItems.init();
