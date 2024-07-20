@@ -3,11 +3,11 @@
  */
 package moriyashiine.lostrelics.common;
 
-import moriyashiine.lostrelics.client.packet.SyncDoppelgangerSlimStatusS2CPayload;
+import moriyashiine.lostrelics.client.payload.SyncDoppelgangerSlimStatusS2CPayload;
 import moriyashiine.lostrelics.common.event.SmokingMirrorEvent;
 import moriyashiine.lostrelics.common.event.TurquoiseEyeEvent;
 import moriyashiine.lostrelics.common.init.*;
-import moriyashiine.lostrelics.common.packet.SyncDoppelgangerSlimStatusC2SPayload;
+import moriyashiine.lostrelics.common.payload.SyncDoppelgangerSlimStatusC2SPayload;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
@@ -31,7 +31,7 @@ public class LostRelics implements ModInitializer {
 	}
 
 	public static Identifier id(String value) {
-		return new Identifier(MOD_ID, value);
+		return Identifier.of(MOD_ID, value);
 	}
 
 	private void initEvents() {

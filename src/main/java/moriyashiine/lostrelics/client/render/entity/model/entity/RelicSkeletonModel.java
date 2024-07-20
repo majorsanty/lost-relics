@@ -1,7 +1,7 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-package moriyashiine.lostrelics.client.render.model.entity;
+package moriyashiine.lostrelics.client.render.entity.model.entity;
 
 import moriyashiine.lostrelics.common.LostRelics;
 import moriyashiine.lostrelics.common.init.ModEntityComponents;

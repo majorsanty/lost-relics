@@ -1,11 +1,11 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-package moriyashiine.lostrelics.client.packet;
+package moriyashiine.lostrelics.client.payload;
 
 import moriyashiine.lostrelics.common.LostRelics;
 import moriyashiine.lostrelics.common.entity.DoppelgangerEntity;
-import moriyashiine.lostrelics.common.packet.SyncDoppelgangerSlimStatusC2SPayload;
+import moriyashiine.lostrelics.common.payload.SyncDoppelgangerSlimStatusC2SPayload;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.client.util.SkinTextures;
@@ -18,7 +18,7 @@ import net.minecraft.util.Uuids;
 import java.util.UUID;
 
 public record SyncDoppelgangerSlimStatusS2CPayload(UUID uuid) implements CustomPayload {
-	public static final CustomPayload.Id<SyncDoppelgangerSlimStatusS2CPayload> ID = CustomPayload.id(LostRelics.id("sync_doppelganger_slim_status_s2c").toString());
+	public static final CustomPayload.Id<SyncDoppelgangerSlimStatusS2CPayload> ID = new Id<>(LostRelics.id("sync_doppelganger_slim_status_s2c"));
 	public static final PacketCodec<PacketByteBuf, SyncDoppelgangerSlimStatusS2CPayload> CODEC = PacketCodec.tuple(
 			Uuids.PACKET_CODEC, SyncDoppelgangerSlimStatusS2CPayload::uuid,
 			SyncDoppelgangerSlimStatusS2CPayload::new);

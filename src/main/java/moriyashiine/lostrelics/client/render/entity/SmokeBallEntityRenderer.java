@@ -13,7 +13,7 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.Identifier;
 
 public class SmokeBallEntityRenderer extends EntityRenderer<SmokeBallEntity> {
-	private static final Identifier TEXTURE = new Identifier("textures/block/redstone_dust_overlay.png");
+	private static final Identifier TEXTURE = Identifier.of("textures/block/redstone_dust_overlay.png");
 
 	public SmokeBallEntityRenderer(EntityRendererFactory.Context context) {
 		super(context);

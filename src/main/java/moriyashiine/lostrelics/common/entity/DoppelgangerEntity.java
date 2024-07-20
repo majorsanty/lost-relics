@@ -32,7 +32,6 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.EntityView;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -57,11 +56,6 @@ public class DoppelgangerEntity extends TameableEntity {
 
 	public static DefaultAttributeContainer.Builder createDoppelgangerAttributes() {
 		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_ATTACK_DAMAGE).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35);
-	}
-
-	@Override
-	public EntityView method_48926() {
-		return getWorld();
 	}
 
 	@Nullable
@@ -108,7 +102,7 @@ public class DoppelgangerEntity extends TameableEntity {
 	@Override
 	protected void initGoals() {
 		goalSelector.add(1, new SwimGoal(this));
-		goalSelector.add(3, new FollowOwnerGoal(this, 1, 10, 2, false));
+		goalSelector.add(3, new FollowOwnerGoal(this, 1, 10, 2));
 		goalSelector.add(4, new WanderAroundFarGoal(this, 1));
 		goalSelector.add(5, new LookAtEntityGoal(this, PlayerEntity.class, 8));
 		goalSelector.add(5, new LookAroundGoal(this));
@@ -165,7 +159,7 @@ public class DoppelgangerEntity extends TameableEntity {
 						if (projectileType.isEmpty()) {
 							projectileType = new ItemStack(Items.ARROW);
 						}
-						PersistentProjectileEntity projectile = ProjectileUtil.createArrowProjectile(this, projectileType, 1);
+						PersistentProjectileEntity projectile = ProjectileUtil.createArrowProjectile(this, projectileType, 1, rangedStack);
 						double dX = getTarget().getX() - getX();
 						double dY = getTarget().getBodyY(1 / 3F) - projectile.getY();
 						double dZ = getTarget().getZ() - getZ();
@@ -189,7 +183,7 @@ public class DoppelgangerEntity extends TameableEntity {
 	}
 
 	@Override
-	public boolean canBeLeashedBy(PlayerEntity player) {
+	public boolean canBeLeashed() {
 		return false;
 	}
 

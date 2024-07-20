@@ -8,7 +8,6 @@ import moriyashiine.lostrelics.common.LostRelics;
 import moriyashiine.lostrelics.common.init.ModDataComponentTypes;
 import moriyashiine.lostrelics.common.init.ModEntityComponents;
 import moriyashiine.lostrelics.common.init.ModSoundEvents;
-import net.minecraft.client.item.TooltipType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
@@ -17,6 +16,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.StackReference;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.text.Text;
@@ -29,7 +29,6 @@ import net.minecraft.world.World;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.function.Consumer;
 
 public class CursedAmuletItem extends RelicItem {
@@ -37,12 +36,12 @@ public class CursedAmuletItem extends RelicItem {
 
 	static {
 		GOOD_MODIFIERS = new HashMap<>();
-		GOOD_MODIFIERS.put(EntityAttributes.GENERIC_ARMOR, new EntityAttributeModifier(UUID.fromString("4c9510d8-5d90-4b9f-8ee6-4779f824998a"), "Trinket modifier", 4, EntityAttributeModifier.Operation.ADD_VALUE));
-		GOOD_MODIFIERS.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(UUID.fromString("723e4c9c-37fe-4a22-a60f-704741b29f22"), "Trinket modifier", 3, EntityAttributeModifier.Operation.ADD_VALUE));
+		GOOD_MODIFIERS.put(EntityAttributes.GENERIC_ARMOR, new EntityAttributeModifier(LostRelics.id("cursed_amulet_good_armor"), 4, EntityAttributeModifier.Operation.ADD_VALUE));
+		GOOD_MODIFIERS.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(LostRelics.id("cursed_amulet_good_attack_damage"), 3, EntityAttributeModifier.Operation.ADD_VALUE));
 
 		BAD_MODIFIERS = new HashMap<>();
-		BAD_MODIFIERS.put(EntityAttributes.GENERIC_ARMOR, new EntityAttributeModifier(UUID.fromString("3637dedf-9d72-40a4-bf2b-3f31356af2d1"), "Trinket modifier", -4, EntityAttributeModifier.Operation.ADD_VALUE));
-		BAD_MODIFIERS.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(UUID.fromString("bda17160-e891-4635-bf1a-bb4d85b2cdaf"), "Trinket modifier", -3, EntityAttributeModifier.Operation.ADD_VALUE));
+		BAD_MODIFIERS.put(EntityAttributes.GENERIC_ARMOR, new EntityAttributeModifier(LostRelics.id("cursed_amulet_bad_armor"), -4, EntityAttributeModifier.Operation.ADD_VALUE));
+		BAD_MODIFIERS.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(LostRelics.id("cursed_amulet_bad_attack_damage"), -3, EntityAttributeModifier.Operation.ADD_VALUE));
 	}
 
 	public CursedAmuletItem() {
@@ -103,20 +102,20 @@ public class CursedAmuletItem extends RelicItem {
 		GOOD_MODIFIERS.forEach((attribute, modifier) -> {
 			EntityAttributeInstance instance = entity.getAttributeInstance(attribute);
 			if (applyNegative || remove) {
-				if (instance != null && instance.hasModifier(modifier)) {
+				if (instance != null && instance.hasModifier(modifier.id())) {
 					instance.removeModifier(modifier);
 				}
-			} else if (instance != null && !instance.hasModifier(modifier)) {
+			} else if (instance != null && !instance.hasModifier(modifier.id())) {
 				instance.addPersistentModifier(modifier);
 			}
 		});
 		BAD_MODIFIERS.forEach((attribute, modifier) -> {
 			EntityAttributeInstance instance = entity.getAttributeInstance(attribute);
 			if (!applyNegative || remove) {
-				if (instance != null && instance.hasModifier(modifier)) {
+				if (instance != null && instance.hasModifier(modifier.id())) {
 					instance.removeModifier(modifier);
 				}
-			} else if (instance != null && !instance.hasModifier(modifier)) {
+			} else if (instance != null && !instance.hasModifier(modifier.id())) {
 				instance.addPersistentModifier(modifier);
 			}
 		});

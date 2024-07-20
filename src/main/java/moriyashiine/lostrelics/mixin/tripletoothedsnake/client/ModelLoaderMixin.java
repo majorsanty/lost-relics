@@ -20,10 +20,10 @@ import java.util.List;
 @Mixin(ModelLoader.class)
 public class ModelLoaderMixin {
 	@Unique
-	private static final Identifier BOW = new Identifier("item/bow");
+	private static final Identifier BOW = Identifier.of("item/bow");
 
 	@Unique
-	private static final Identifier CROSSBOW = new Identifier("item/crossbow");
+	private static final Identifier CROSSBOW = Identifier.of("item/crossbow");
 
 	@Inject(method = "loadModelFromJson", at = @At("RETURN"))
 	private void lostrelics$tripleToothedSnake$taintedBloodCrystalModelOverrides(Identifier id, CallbackInfoReturnable<JsonUnbakedModel> cir) {
@@ -31,15 +31,15 @@ public class ModelLoaderMixin {
 			int index = 0;
 			for (float pull : new float[]{0, 0.65F, 0.9F}) {
 				List<ModelOverride.Condition> conditions = new LinkedList<>();
-				conditions.add(new ModelOverride.Condition(new Identifier("pulling"), 1));
-				conditions.add(new ModelOverride.Condition(new Identifier("pull"), pull));
+				conditions.add(new ModelOverride.Condition(Identifier.of("pulling"), 1));
+				conditions.add(new ModelOverride.Condition(Identifier.of("pull"), pull));
 				conditions.add(new ModelOverride.Condition(LostRelics.id("pulling_tainted_blood_crystal"), 1));
 				cir.getReturnValue().getOverrides().add(new ModelOverride(LostRelics.id("item/bow_pulling_tainted_blood_crystal_" + index), conditions));
 				index++;
 			}
 		} else if (id.equals(CROSSBOW)) {
 			List<ModelOverride.Condition> conditions = new LinkedList<>();
-			conditions.add(new ModelOverride.Condition(new Identifier("charged"), 1));
+			conditions.add(new ModelOverride.Condition(Identifier.of("charged"), 1));
 			conditions.add(new ModelOverride.Condition(LostRelics.id("tainted_blood_crystal"), 1));
 			cir.getReturnValue().getOverrides().add(new ModelOverride(LostRelics.id("item/crossbow_tainted_blood_crystal"), conditions));
 		}

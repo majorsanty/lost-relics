@@ -7,11 +7,11 @@ import moriyashiine.lostrelics.common.init.ModItems;
 import moriyashiine.lostrelics.common.init.ModRecipeSerializers;
 import moriyashiine.lostrelics.common.item.TripleToothedSnakeItem;
 import net.minecraft.component.DataComponentTypes;
-import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
+import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
@@ -22,10 +22,10 @@ public class TaintedBloodCrystalRecipe extends SpecialCraftingRecipe {
 	}
 
 	@Override
-	public boolean matches(RecipeInputInventory inventory, World world) {
+	public boolean matches(CraftingRecipeInput input, World world) {
 		int foundSnakes = 0;
-		for (int i = 0; i < inventory.size(); i++) {
-			ItemStack stack = inventory.getStack(i);
+		for (int i = 0; i < input.getSize(); i++) {
+			ItemStack stack = input.getStackInSlot(i);
 			if (stack.isOf(ModItems.TRIPLE_TOOTHED_SNAKE)) {
 				if (TripleToothedSnakeItem.getCharges(stack) > 0) {
 					foundSnakes++;
@@ -38,9 +38,9 @@ public class TaintedBloodCrystalRecipe extends SpecialCraftingRecipe {
 	}
 
 	@Override
-	public ItemStack craft(RecipeInputInventory inventory, RegistryWrapper.WrapperLookup lookup) {
-		for (int i = 0; i < inventory.size(); i++) {
-			ItemStack stack = inventory.getStack(i);
+	public ItemStack craft(CraftingRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
+		for (int i = 0; i < input.getSize(); i++) {
+			ItemStack stack = input.getStackInSlot(i);
 			if (stack.isOf(ModItems.TRIPLE_TOOTHED_SNAKE)) {
 				ItemStack crystal = new ItemStack(ModItems.TAINTED_BLOOD_CRYSTAL, TripleToothedSnakeItem.getCharges(stack));
 				crystal.set(DataComponentTypes.POTION_CONTENTS, stack.get(DataComponentTypes.POTION_CONTENTS));
@@ -51,10 +51,10 @@ public class TaintedBloodCrystalRecipe extends SpecialCraftingRecipe {
 	}
 
 	@Override
-	public DefaultedList<ItemStack> getRemainder(RecipeInputInventory inventory) {
-		DefaultedList<ItemStack> remainder = DefaultedList.ofSize(inventory.size(), ItemStack.EMPTY);
+	public DefaultedList<ItemStack> getRemainder(CraftingRecipeInput input) {
+		DefaultedList<ItemStack> remainder = DefaultedList.ofSize(input.getSize(), ItemStack.EMPTY);
 		for (int i = 0; i < remainder.size(); i++) {
-			ItemStack stack = inventory.getStack(i);
+			ItemStack stack = input.getStackInSlot(i);
 			TripleToothedSnakeItem.setCharges(stack, 0);
 			remainder.set(i, stack.copy());
 		}

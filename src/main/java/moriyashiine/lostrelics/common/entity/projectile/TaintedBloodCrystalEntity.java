@@ -22,6 +22,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,13 +36,13 @@ public class TaintedBloodCrystalEntity extends PersistentProjectileEntity {
 		super(entityType, world);
 	}
 
-	public TaintedBloodCrystalEntity(World world, double x, double y, double z, ItemStack stack) {
-		super(ModEntityTypes.TAINTED_BLOOD_CRYSTAL, x, y, z, world, stack);
+	public TaintedBloodCrystalEntity(World world, double x, double y, double z, ItemStack stack, @Nullable ItemStack shotFrom) {
+		super(ModEntityTypes.TAINTED_BLOOD_CRYSTAL, x, y, z, world, stack, shotFrom);
 		stack.getOrDefault(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT).getEffects().forEach(instance -> effects.add(new StatusEffectInstance(instance)));
 	}
 
-	public TaintedBloodCrystalEntity(World world, LivingEntity owner, ItemStack stack) {
-		super(ModEntityTypes.TAINTED_BLOOD_CRYSTAL, owner, world, stack);
+	public TaintedBloodCrystalEntity(World world, LivingEntity owner, ItemStack stack, @Nullable ItemStack shotFrom) {
+		super(ModEntityTypes.TAINTED_BLOOD_CRYSTAL, owner, world, stack, shotFrom);
 		stack.getOrDefault(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT).getEffects().forEach(instance -> effects.add(new StatusEffectInstance(instance)));
 	}
 

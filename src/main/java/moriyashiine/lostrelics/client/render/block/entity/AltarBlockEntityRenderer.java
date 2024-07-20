@@ -1,7 +1,7 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-package moriyashiine.lostrelics.client.render.blockentity;
+package moriyashiine.lostrelics.client.render.block.entity;
 
 import moriyashiine.lostrelics.common.blockentity.AltarBlockEntity;
 import net.minecraft.client.MinecraftClient;

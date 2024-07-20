@@ -3,7 +3,7 @@
  */
 package moriyashiine.lostrelics.mixin.cursedamulet.client;
 
-import moriyashiine.lostrelics.client.render.model.entity.RelicSkeletonModel;
+import moriyashiine.lostrelics.client.render.entity.model.entity.RelicSkeletonModel;
 import moriyashiine.lostrelics.common.init.ModEntityComponents;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.network.AbstractClientPlayerEntity;

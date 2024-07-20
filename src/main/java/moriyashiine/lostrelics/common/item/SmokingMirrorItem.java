@@ -3,7 +3,7 @@
  */
 package moriyashiine.lostrelics.common.item;
 
-import moriyashiine.lostrelics.client.packet.SyncDoppelgangerSlimStatusS2CPayload;
+import moriyashiine.lostrelics.client.payload.SyncDoppelgangerSlimStatusS2CPayload;
 import moriyashiine.lostrelics.common.LostRelicsUtil;
 import moriyashiine.lostrelics.common.entity.DoppelgangerEntity;
 import moriyashiine.lostrelics.common.init.ModDamageTypes;
@@ -60,7 +60,7 @@ public class SmokingMirrorItem extends RelicItem {
 							if (teleportOnPlayer) {
 								mutable.set(user.getBlockPos());
 							}
-							doppelganger.teleport(mutable.getX(), mutable.getY(), mutable.getZ());
+							doppelganger.refreshPositionAndAngles(mutable.getX(), mutable.getY(), mutable.getZ(), 0, 0);
 							doppelganger.setOwner(user);
 							if (mirrorDemon) {
 								doppelganger.getDataTracker().set(DoppelgangerEntity.MIRROR_DEMON, true);

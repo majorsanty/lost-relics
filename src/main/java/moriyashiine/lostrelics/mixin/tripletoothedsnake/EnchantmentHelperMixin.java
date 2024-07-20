@@ -8,13 +8,14 @@ import moriyashiine.lostrelics.common.init.ModItems;
 import moriyashiine.lostrelics.common.item.RelicItem;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(EnchantmentHelper.class)
 public class EnchantmentHelperMixin {
-	@ModifyReturnValue(method = "getAttackDamage", at = @At("RETURN"))
-	private static float lostrelics$tripleToothedSnake(float original, ItemStack stack) {
+	@ModifyReturnValue(method = "getDamage", at = @At("RETURN"))
+	private static float lostrelics$tripleToothedSnake(float original, ServerWorld world, ItemStack stack) {
 		if (stack.isOf(ModItems.TRIPLE_TOOTHED_SNAKE) && !RelicItem.isUsable(stack)) {
 			return original - 5;
 		}

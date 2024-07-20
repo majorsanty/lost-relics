@@ -1,7 +1,7 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-package moriyashiine.lostrelics.common.packet;
+package moriyashiine.lostrelics.common.payload;
 
 import moriyashiine.lostrelics.common.LostRelics;
 import moriyashiine.lostrelics.common.entity.DoppelgangerEntity;
@@ -16,7 +16,7 @@ import net.minecraft.util.Uuids;
 import java.util.UUID;
 
 public record SyncDoppelgangerSlimStatusC2SPayload(UUID uuid, boolean slim) implements CustomPayload {
-	public static final CustomPayload.Id<SyncDoppelgangerSlimStatusC2SPayload> ID = CustomPayload.id(LostRelics.id("sync_doppelganger_slim_status_cs2").toString());
+	public static final CustomPayload.Id<SyncDoppelgangerSlimStatusC2SPayload> ID = new Id<>(LostRelics.id("sync_doppelganger_slim_status_cs2"));
 	public static final PacketCodec<PacketByteBuf, SyncDoppelgangerSlimStatusC2SPayload> CODEC = PacketCodec.tuple(
 			Uuids.PACKET_CODEC, SyncDoppelgangerSlimStatusC2SPayload::uuid,
 			PacketCodecs.BOOL, SyncDoppelgangerSlimStatusC2SPayload::slim,
