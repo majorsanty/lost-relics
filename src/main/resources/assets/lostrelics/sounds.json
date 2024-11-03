@@ -1,4 +1,10 @@
 {
+  "block.altar.convert": {
+	"sounds": [
+	  "random/fizz"
+	],
+	"subtitle": "subtitles.lostrelics.block.altar.convert"
+  },
   "entity.generic.transform": {
 	"sounds": [
 	  "random/fizz"

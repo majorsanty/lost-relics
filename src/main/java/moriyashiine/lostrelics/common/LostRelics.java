@@ -22,6 +22,7 @@ public class LostRelics implements ModInitializer {
 		ModEntityTypes.init();
 		ModWorldGenerators.init();
 		ModRecipeSerializers.init();
+		ModBlocks.init();
 		ModSoundEvents.init();
 		initEvents();
 		initPackets();

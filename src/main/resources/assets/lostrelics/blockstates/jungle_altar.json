@@ -1,0 +1,19 @@
+{
+  "variants": {
+	"facing=east": {
+	  "model": "lostrelics:block/jungle_altar",
+	  "y": 270
+	},
+	"facing=north": {
+	  "model": "lostrelics:block/jungle_altar",
+	  "y": 180
+	},
+	"facing=south": {
+	  "model": "lostrelics:block/jungle_altar"
+	},
+	"facing=west": {
+	  "model": "lostrelics:block/jungle_altar",
+	  "y": 90
+	}
+  }
+}
