@@ -1,0 +1,33 @@
+{
+  "parent": "lostrelics:adventure/find_jungle_pyramid",
+  "criteria": {
+	"has_relic": {
+	  "conditions": {
+		"items": [
+		  {
+			"items": "lostrelics:triple_toothed_snake"
+		  }
+		]
+	  },
+	  "trigger": "minecraft:inventory_changed"
+	}
+  },
+  "display": {
+	"description": {
+	  "translate": "advancements.lostrelics.adventure.triple_toothed_snake.description"
+	},
+	"icon": {
+	  "count": 1,
+	  "id": "lostrelics:triple_toothed_snake"
+	},
+	"title": {
+	  "translate": "advancements.lostrelics.adventure.triple_toothed_snake.title"
+	}
+  },
+  "requirements": [
+	[
+	  "has_relic"
+	]
+  ],
+  "sends_telemetry_event": true
+}
